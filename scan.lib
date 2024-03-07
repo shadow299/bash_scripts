@@ -1,0 +1,21 @@
+NmapScan(){
+    echo "[*] Starting nmap scan on $DOMAIN"
+
+	nmap $DOMAIN > ${DOMAIN}_recon/${DOMAIN}_nmap.txt
+
+	echo "[*] Result stored in ${DOMAIN}_recon/${DOMAIN}_nmap.txt"
+}
+
+DirSearchScan(){
+    echo "[*] Starting dirsearch on $DOMAIN"
+
+	dirsearch -u $DOMAIN -e php > ${DOMAIN}_recon/${DOMAIN}_dirsearch.txt
+
+	echo "[*] Result stored in ${DOMAIN}_recon/${DOMAIN}_dirsearch.txt"
+}
+
+CrtScan(){
+    echo "[*] Starting crt.sh on $DOMAIN"
+	curl "https://crt.sh/?q=$DOMAIN&output=json" -o ${DOMAIN}_recon/cert.txt
+	echo "[*] Result stored in ${DOMAIN}_recon/${DOMAIN}_recon/cert.txt"
+}
